@@ -1,0 +1,45 @@
+body {
+    background-color: #33bb33;
+    font-family: Serif;
+}
+
+header {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 44px;
+    font-weight: 700;
+    text-align: center;
+}
+
+footer {
+    font-size: 16px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding: 2px;
+    background-color: #6666aa;
+}
+
+footer b {
+    font-size: 20px;
+}
+
+#rotor_pane {
+    margin-left: auto;
+    margin-right: auto;
+    width: 220px;
+}
+
+.rotor {
+    float: left;
+    width: 60px;
+    border: 1px solid #111111;
+    margin: 5px;
+    text-align: center;
+}
+
+#webapp {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
