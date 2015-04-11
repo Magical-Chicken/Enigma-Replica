@@ -13,8 +13,16 @@ var Display = {
     initialize : function() {
         this.rotor_disp = [];
 
+        // Function to call when rotor up or down clicked
+        var adjust_rotor = function(event) {
+            var rtr = event.target.parentNode.id.charAt(6) - 1;
+            Rotors.change_init_pos(rtr, (event.target.className == "up") ? -1 : 1);
+            Display.update();
+        }
+
         // Create rotor display
         for (i = 1; i < 4; i++) {
+
             // Create rotor div
             var parent_d = document.createElement("div");
             parent_d.className = "rotor";
@@ -25,7 +33,7 @@ var Display = {
             var up_d = document.createElement("div");
             up_d.innerHTML = '↑';
             up_d.className = "up";
-            up_d.onclick = Display.up_rotor;
+            up_d.onclick = adjust_rotor;
             parent_d.appendChild(up_d);
 
             // Create rotor disp
@@ -37,16 +45,9 @@ var Display = {
             var down_d = document.createElement("div");
             down_d.innerHTML = '↓';
             down_d.className = "down";
-            down_d.onclick = Display.up_rotor;
+            down_d.onclick = adjust_rotor;
             parent_d.appendChild(down_d);
         }
-    },
-
-    up_rotor : function(event) {
-        // Event listener for setting rotors
-        var rtr = event.target.parentNode.id.charAt(6) - 1;
-        Rotors.change_init_pos(rtr, (event.target.className == "up") ? -1 : 1);
-        Display.update();
     },
 
     update : function() {
