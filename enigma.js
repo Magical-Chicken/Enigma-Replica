@@ -7,7 +7,7 @@ var Simulation = {
         Display.initialize();
         Display.update();
     },
-}
+};
 
 var Display = {
     initialize : function() {
@@ -55,7 +55,7 @@ var Display = {
         for (var i = 0; i < 3; i++)
             this.rotor_disp[i].innerHTML = Rotors.get_rts()[i];
     }
-}
+};
 
 var Rotors = {
     initialize : function(init_pos) {
@@ -82,4 +82,4 @@ var Rotors = {
     get_rts() {
         return this.rts;
     }
-}
+};
