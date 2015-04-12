@@ -79,6 +79,5 @@ function Rotor(id) {
 
     this.sub_letter = function(letter) {
         // Do the substitution cipher for this rotor
-        return this.wiring[letter];
     };
 }
