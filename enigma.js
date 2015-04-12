@@ -3,7 +3,7 @@ var Simulation = {
         // Init rotors
         this.rotors = [];
         for (var i = 0; i < 3; i++) {
-            this.rotors[i] = new Rotor();
+            this.rotors[i] = new Rotor(i);
         }
         
         // Init display
@@ -60,9 +60,12 @@ var Display = {
     }
 };
 
-function Rotor() {
+function Rotor(id) {
     // Rotor position
     this.pos = 'A';
+    
+    // Rotor wiring, from rotor_wiring.js
+    this.wiring = rotor_wirings[id];
     
     this.change_init_pos = function(change_by) {
         // Set rotor starting position
@@ -72,5 +75,10 @@ function Rotor() {
             this.pos = 'Z';
         else
             this.pos = String.fromCharCode(this.pos.charCodeAt() + change_by);
+    };
+
+    this.sub_letter = function(letter) {
+        // Do the substitution cipher for this rotor
+        return this.wiring[letter];
     };
 }
