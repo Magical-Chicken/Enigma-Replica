@@ -21,7 +21,7 @@ var Display = {
         }
 
         // Create rotor display
-        for (i = 1; i < 4; i++) {
+        for (var i = 1; i < 4; i++) {
 
             // Create rotor div
             var parent_d = document.createElement("div");
@@ -52,7 +52,7 @@ var Display = {
 
     update : function() {
         // Update rotor letters
-        for (i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
             this.rotor_disp[i].innerHTML = Rotors.get_rts()[i];
     }
 }
