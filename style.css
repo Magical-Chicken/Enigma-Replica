@@ -41,11 +41,12 @@ footer b {
 #key_pane {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 30px;
     width: 550px;
+    height: 80px;
 }
 
-.key {
+#key_pane div {
     border: 1px solid #000000;
     padding-top: 5px;;
     padding-bottom: 5px;;
@@ -57,9 +58,41 @@ footer b {
     transition: background-color 1s ease;
 }
 
-.highlight {
+.pthighlight {
     background-color: #aa5555;
     transition: background-color 1s ease;
+}
+
+.cthighlight {
+    background-color: #5555aa;
+    transition: background-color 1s ease;
+}
+
+#text_pane {
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border-top: 1px solid #000000;
+}
+
+#text_pane div {
+    width: 213px;
+    height: 100px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 18px;
+    padding: 5px;
+}
+
+#tp_pt {
+    float: left;
+    border-right: 1px solid #000000;
+}
+
+#tp_ct {
+    float: right;
+    border-left: 1px solid #000000;
 }
 
 #webapp {

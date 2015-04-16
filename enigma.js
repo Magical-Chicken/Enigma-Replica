@@ -16,11 +16,33 @@ var Simulation = {
         Display.update();
     },
 
+    encrypt : function(key) {
+        // Perform the encryption
+        return "A";
+    },
+
     key_press_handler : function(key) {
-        var prev = document.getElementsByClassName("highlight");
-        if (prev[0] != undefined)
-            prev[0].classList.remove("highlight");
-        document.getElementById("key_" + key).classList.add("highlight");
+        // Remove old highlights
+        var prevpt = document.getElementsByClassName("pthighlight");
+        if (prevpt[0] != undefined)
+            prevpt[0].classList.remove("pthighlight");
+        var prevct = document.getElementsByClassName("cthighlight");
+        if (prevct[0] != undefined)
+            prevct[0].classList.remove("cthighlight");
+
+        // Highlight plaintext
+        document.getElementById("key_" + key).classList.add("pthighlight");
+
+        // Highlight ciphertext
+        var ct = Simulation.encrypt(key);
+        document.getElementById("key_" + ct).classList.add("cthighlight");
+
+        // Add text to text panes
+        // TODO: should probably move this
+        document.getElementById("tp_pt").innerHTML =
+            document.getElementById("tp_pt").innerHTML + " " + key;
+        document.getElementById("tp_ct").innerHTML =
+            document.getElementById("tp_ct").innerHTML + " " + ct;
     },
 
     rotor_set_listener : function(event) {
@@ -68,7 +90,6 @@ var Display = {
         for (var i = 0; i < 26; i++) {
             var key = document.createElement("div");
             var letter = String.fromCharCode(65 + i);
-            key.className = "key";
             key.id = "key_" + letter;
             key.innerHTML = letter;
             key.onclick = function(event) {
