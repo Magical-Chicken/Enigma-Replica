@@ -122,6 +122,10 @@ function Rotor(id) {
     
     // Rotor wiring, from rotor_wiring.js
     this.wiring = rotor_wirings[id];
+
+    // Rotor advancement, from rotor_wiring.js
+    this.advance_cycle = rotor_advancements[id];
+    this.advance_count = 0;
     
     this.change_init_pos = function(change_by) {
         // Set rotor starting position
@@ -132,6 +136,10 @@ function Rotor(id) {
         else
             this.pos = String.fromCharCode(this.pos.charCodeAt() + change_by);
     };
+
+    this.advance = function() {
+        // Advance the rotor
+    }
 
     this.sub_letter = function(letter) {
         // Do the substitution cipher for this rotor

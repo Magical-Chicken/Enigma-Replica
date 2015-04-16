@@ -84,3 +84,5 @@ var rotor_wirings = [
         "Z" : "A"
     }
 ];
+
+var rotor_advancements = [1, 26, 676];
