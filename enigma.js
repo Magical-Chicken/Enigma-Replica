@@ -5,9 +5,22 @@ var Simulation = {
         for (var i = 0; i < 3; i++) {
             this.rotors[i] = new Rotor(i);
         }
+
+        // Create key listener
+        document.onkeydown = function(event) {
+            Simulation.key_press_handler(String.fromCharCode(event.keyCode));
+        };
+
         // Init display
         Display.initialize();
         Display.update();
+    },
+
+    key_press_handler : function(key) {
+        var prev = document.getElementsByClassName("highlight");
+        if (prev[0] != undefined)
+            prev[0].classList.remove("highlight");
+        document.getElementById("key_" + key).classList.add("highlight");
     },
 
     rotor_set_listener : function(event) {
@@ -59,11 +72,7 @@ var Display = {
             key.id = "key_" + letter;
             key.innerHTML = letter;
             key.onclick = function(event) {
-                // TODO: this is for testing only
-                var prev = document.getElementsByClassName("highlight");
-                if (prev[0] != undefined)
-                    prev[0].classList.remove("highlight");
-                event.target.classList.add("highlight");
+                Simulation.key_press_handler(event.target.id.charAt(4));
             }
             document.getElementById("key_pane").appendChild(key);
         }
