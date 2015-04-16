@@ -5,7 +5,6 @@ var Simulation = {
         for (var i = 0; i < 3; i++) {
             this.rotors[i] = new Rotor(i);
         }
-        
         // Init display
         Display.initialize();
         Display.update();
@@ -50,6 +49,23 @@ var Display = {
             down_d.className = "down";
             down_d.onclick = Simulation.rotor_set_listener;
             parent_d.appendChild(down_d);
+
+        }
+        // Create keys display
+        for (var i = 0; i < 26; i++) {
+            var key = document.createElement("div");
+            var letter = String.fromCharCode(65 + i);
+            key.className = "key";
+            key.id = "key_" + letter;
+            key.innerHTML = letter;
+            key.onclick = function(event) {
+                // TODO: this is for testing only
+                var prev = document.getElementsByClassName("highlight");
+                if (prev[0] != undefined)
+                    prev[0].classList.remove("highlight");
+                event.target.classList.add("highlight");
+            }
+            document.getElementById("key_pane").appendChild(key);
         }
     },
 

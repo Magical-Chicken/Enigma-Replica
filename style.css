@@ -11,8 +11,7 @@ header {
     text-align: center;
 }
 
-footer {
-    font-size: 16px;
+footer { font-size: 16px;
     position: absolute;
     bottom: 0px;
     right: 0px;
@@ -28,6 +27,7 @@ footer b {
     margin-left: auto;
     margin-right: auto;
     width: 220px;
+    height: 64px;
 }
 
 .rotor {
@@ -36,6 +36,30 @@ footer b {
     border: 1px solid #111111;
     margin: 5px;
     text-align: center;
+}
+
+#key_pane {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    width: 550px;
+}
+
+.key {
+    border: 1px solid #000000;
+    padding-top: 5px;;
+    padding-bottom: 5px;;
+    width: 30px;
+    text-align: center;
+    border-radius: 15px;
+    float: left;
+    margin: 5px;
+    transition: background-color 1s ease;
+}
+
+.highlight {
+    background-color: #aa5555;
+    transition: background-color 1s ease;
 }
 
 #webapp {
