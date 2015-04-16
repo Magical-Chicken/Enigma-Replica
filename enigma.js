@@ -22,27 +22,17 @@ var Simulation = {
     },
 
     key_press_handler : function(key) {
-        // Remove old highlights
-        var prevpt = document.getElementsByClassName("pthighlight");
-        if (prevpt[0] != undefined)
-            prevpt[0].classList.remove("pthighlight");
-        var prevct = document.getElementsByClassName("cthighlight");
-        if (prevct[0] != undefined)
-            prevct[0].classList.remove("cthighlight");
+        // Check if key is in acceptable range
+        if (key.charCodeAt() < 65 || key.charCodeAt() > 90)
+            return;
 
-        // Highlight plaintext
-        document.getElementById("key_" + key).classList.add("pthighlight");
+        // Set current key
+        this.ckey = key;
+        // Set current ciphertext key
+        this.cct = Simulation.encrypt(key);
 
-        // Highlight ciphertext
-        var ct = Simulation.encrypt(key);
-        document.getElementById("key_" + ct).classList.add("cthighlight");
-
-        // Add text to text panes
-        // TODO: should probably move this
-        document.getElementById("tp_pt").innerHTML =
-            document.getElementById("tp_pt").innerHTML + " " + key;
-        document.getElementById("tp_ct").innerHTML =
-            document.getElementById("tp_ct").innerHTML + " " + ct;
+        // Update display
+        Display.update();
     },
 
     rotor_set_listener : function(event) {
@@ -103,6 +93,26 @@ var Display = {
         // Update rotor letters
         for (var i = 0; i < 3; i++)
             this.rotor_disp[i].innerHTML = Simulation.rotors[i].pos;
+
+        // Remove old highlights
+        var prevpt = document.getElementsByClassName("pthighlight");
+        if (prevpt[0] != undefined)
+            prevpt[0].classList.remove("pthighlight");
+        var prevct = document.getElementsByClassName("cthighlight");
+        if (prevct[0] != undefined)
+            prevct[0].classList.remove("cthighlight");
+
+        // Highlight plaintext
+        document.getElementById("key_" + Simulation.ckey).classList.add("pthighlight");
+
+        // Highlight ciphertext
+        document.getElementById("key_" + Simulation.cct).classList.add("cthighlight");
+
+        // Add text to text panes
+        document.getElementById("tp_pt").innerHTML =
+            document.getElementById("tp_pt").innerHTML + " " + Simulation.ckey;
+        document.getElementById("tp_ct").innerHTML =
+            document.getElementById("tp_ct").innerHTML + " " + Simulation.cct;
     }
 };
 
