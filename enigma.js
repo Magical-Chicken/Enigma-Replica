@@ -18,6 +18,9 @@ var Simulation = {
 
     encrypt : function(key) {
         // Perform the encryption
+        for (var i = 0; i < 3; i++) {
+            this.rotors[i].advance();
+        }
         return "A";
     },
 
@@ -139,9 +142,13 @@ function Rotor(id) {
 
     this.advance = function() {
         // Advance the rotor
+        if (++this.advance_count >= this.advance_cycle) {
+            this.advance_count = 0;
+            this.change_init_pos(1);
+        }
     }
 
     this.sub_letter = function(letter) {
         // Do the substitution cipher for this rotor
     };
-}
+};
