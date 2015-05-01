@@ -1,4 +1,5 @@
 var Simulation = {
+    // Set up for simulation
     initialize : function() {
         // Init rotors
         this.rotors = [];
@@ -17,8 +18,8 @@ var Simulation = {
         Display.update();
     },
 
+    // Perform the encryption
     encrypt : function(key) {
-        // Perform the encryption
         var current = key;
 
         // Advance rotors
@@ -42,6 +43,7 @@ var Simulation = {
         return current;
     },
 
+    // Called when keys are pressed or clicked
     key_press_handler : function(key) {
         // Check if key is in acceptable range
         if (key.charCodeAt() < 65 || key.charCodeAt() > 90)
@@ -58,8 +60,8 @@ var Simulation = {
         Display.update();
     },
 
+    // Function to call when rotor up or down clicked
     rotor_set_listener : function(event) {
-        // Function to call when rotor up or down clicked
         var rtr = event.target.parentNode.id.charAt(6) - 1;
         Simulation.rotors[rtr].change_init_pos((event.target.className == "up") ? -1 : 1);
         Display.update();
@@ -113,16 +115,16 @@ var Display = {
         }
     },
 
+    // Add text to text panes
     add_to_text : function() {
-        // Add text to text panes
         document.getElementById("tp_pt").innerHTML =
             document.getElementById("tp_pt").innerHTML + " " + Simulation.ckey;
         document.getElementById("tp_ct").innerHTML =
             document.getElementById("tp_ct").innerHTML + " " + Simulation.cct;
     },
 
+    // Update rotor letters
     update : function() {
-        // Update rotor letters
         for (var i = 0; i < 3; i++)
             this.rotor_disp[i].innerHTML = Simulation.rotors[i].pos;
 
@@ -143,6 +145,7 @@ var Display = {
 };
 
 var Letter = {
+    // Add together pin and adjustment
     add : function(letter, change_by) {
         // Add to letter
         var changed = letter + change_by;
@@ -153,10 +156,12 @@ var Letter = {
         return changed;
     },
 
+    // Convert ASCII char to pin
     to_pin : function(letter) {
         return letter.charCodeAt() - 64;
     },
 
+    // Convert pin to ASCII char
     from_pin : function(pin) {
         return String.fromCharCode(pin + 64);
     }
@@ -173,6 +178,7 @@ function Rotor(id) {
     this.advance_cycle = rotor_advancements[this.id];
     this.advance_count = 0;
 
+    // Set wiring for rotor
     this.set_wiring = function() {
         this.wiring = [];
         for (var i = 0; i < 26; i++) {
@@ -180,22 +186,21 @@ function Rotor(id) {
         }
     };
     
+    // Set rotor starting position
     this.change_init_pos = function(change_by) {
-        // Set rotor starting position
         this.pos = Letter.from_pin(Letter.add(Letter.to_pin(this.pos), change_by));
     };
 
+    // Advance the rotor
     this.advance = function() {
-        // Advance the rotor
         if (++this.advance_count >= this.advance_cycle) {
             this.advance_count = 0;
             this.change_init_pos(1);
         }
     };
 
+    // Do the substitution cipher for this rotor
     this.sub_letter = function(letter) {
-        // Do the substitution cipher for this rotor
-
         // Pin on side 1 of rotor
         var in_pin = Letter.add(Letter.to_pin(letter), Letter.to_pin(this.pos));
         // Pin on side 2 of rotor
@@ -204,9 +209,8 @@ function Rotor(id) {
         return Letter.from_pin(Letter.add(out_pin, (-1 * Letter.to_pin(this.pos))));
     };
 
+    // Do the reverse of the substitution cipher for this rotor
     this.rsub_letter = function(letter) {
-        // Do the substitution cipher for this rotor
-
         // Pin on side 2 of rotor
         var in_pin = Letter.add(Letter.to_pin(letter), Letter.to_pin(this.pos));
         // Pin on side 1 of rotor
