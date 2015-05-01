@@ -1,5 +1,4 @@
 body {
-    background-color: #33bb33;
     font-family: Serif;
 }
 
@@ -11,30 +10,38 @@ header {
     text-align: center;
 }
 
-footer { font-size: 16px;
-    position: absolute;
+footer {
+    font-size: 14px;
+    position: fixed;
     bottom: 0px;
     right: 0px;
     padding: 2px;
-    background-color: #6666aa;
+    background-color: #AAAAAA;
 }
 
 footer b {
-    font-size: 20px;
+    font-size: 18px;
+}
+
+footer a {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #000000;
 }
 
 #rotor_pane {
     margin-left: auto;
     margin-right: auto;
-    width: 220px;
-    height: 64px;
+    width: 218px;
+    height: 60px;
 }
 
 .rotor {
-    float: left;
-    width: 60px;
+    float: right;
+    width: 58px;
     border: 1px solid #111111;
-    margin: 5px;
+    margin-right: 10px;
     text-align: center;
 }
 
@@ -69,34 +76,24 @@ footer b {
 }
 
 #text_pane {
-    width: 450px;
+    width: 100%;
+    height: 300px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
-    border-top: 1px solid #000000;
+    margin-top: 50px;
 }
 
 #text_pane div {
-    width: 213px;
-    height: 100px;
+    width: 50%;
+    height: 100%;
+    margin: 0px;
     text-align: center;
     font-family: monospace;
     font-size: 18px;
-    padding: 5px;
-}
-
-#tp_pt {
     float: left;
-    border-right: 1px solid #000000;
-}
-
-#tp_ct {
-    float: right;
-    border-left: 1px solid #000000;
 }
 
 #webapp {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
-}
