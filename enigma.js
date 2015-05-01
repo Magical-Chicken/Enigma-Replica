@@ -191,7 +191,7 @@ function Rotor(id) {
             this.advance_count = 0;
             this.change_init_pos(1);
         }
-    }
+    };
 
     this.sub_letter = function(letter) {
         // Do the substitution cipher for this rotor
