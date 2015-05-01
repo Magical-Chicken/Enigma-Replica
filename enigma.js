@@ -4,6 +4,7 @@ var Simulation = {
         this.rotors = [];
         for (var i = 0; i < 3; i++) {
             this.rotors[i] = new Rotor(i);
+            this.rotors[i].set_wiring();
         }
 
         // Create key listener
@@ -152,15 +153,22 @@ var Letter = {
 };
 
 function Rotor(id) {
+    // Rotor id
+    this.id = id;
+
     // Rotor position
     this.pos = 'A';
-    
-    // Rotor wiring, from rotor_wiring.js
-    this.wiring = rotor_wirings[id];
 
     // Rotor advancement, from rotor_wiring.js
-    this.advance_cycle = rotor_advancements[id];
+    this.advance_cycle = rotor_advancements[this.id];
     this.advance_count = 0;
+
+    this.set_wiring = function() {
+        this.wiring = [];
+        for (var i = 0; i < 26; i++) {
+            this.wiring[i] = Letter.to_pin(rotor_wirings[this.id][i]);
+        }
+    };
     
     this.change_init_pos = function(change_by) {
         // Set rotor starting position
@@ -177,6 +185,12 @@ function Rotor(id) {
 
     this.sub_letter = function(letter) {
         // Do the substitution cipher for this rotor
-        return "A";
+
+        // Pin on side 1 of rotor
+        var in_pin = Letter.add(Letter.to_pin(letter), Letter.to_pin(this.pos));
+        // Pin on side 2 of rotor
+        var out_pin = this.wiring[in_pin - 1];
+        // Accounting for rotor position
+        return Letter.from_pin(Letter.add(out_pin, (-1 * Letter.to_pin(this.pos))));
     };
 };
