@@ -34,6 +34,8 @@ var Simulation = {
         // Set current ciphertext key
         this.cct = Simulation.encrypt(key);
 
+        // Add to text panes
+        Display.add_to_text();
         // Update display
         Display.update();
     },
@@ -79,6 +81,7 @@ var Display = {
             parent_d.appendChild(down_d);
 
         }
+
         // Create keys display
         for (var i = 0; i < 26; i++) {
             var key = document.createElement("div");
@@ -90,6 +93,14 @@ var Display = {
             }
             document.getElementById("key_pane").appendChild(key);
         }
+    },
+
+    add_to_text : function() {
+        // Add text to text panes
+        document.getElementById("tp_pt").innerHTML =
+            document.getElementById("tp_pt").innerHTML + " " + Simulation.ckey;
+        document.getElementById("tp_ct").innerHTML =
+            document.getElementById("tp_ct").innerHTML + " " + Simulation.cct;
     },
 
     update : function() {
@@ -110,12 +121,6 @@ var Display = {
 
         // Highlight ciphertext
         document.getElementById("key_" + Simulation.cct).classList.add("cthighlight");
-
-        // Add text to text panes
-        document.getElementById("tp_pt").innerHTML =
-            document.getElementById("tp_pt").innerHTML + " " + Simulation.ckey;
-        document.getElementById("tp_ct").innerHTML =
-            document.getElementById("tp_ct").innerHTML + " " + Simulation.cct;
     }
 };
 
