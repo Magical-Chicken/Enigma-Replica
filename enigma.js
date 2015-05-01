@@ -19,14 +19,24 @@ var Simulation = {
 
     encrypt : function(key) {
         // Perform the encryption
+        var current = key;
+
+        // Advance rotors
         for (var i = 0; i < 3; i++) {
             this.rotors[i].advance();
         }
 
         // Do the substitution through the rotors
-        var current = key;
         for (var i = 0; i < 3; i++) {
             current = this.rotors[i].sub_letter(current);
+        }
+
+        // Find letter after reflector rotor;
+        current = rotor_reflector[Letter.to_pin(current) - 1];
+
+        // Do the substitution back through the rotors
+        for (var i = 2; i >= 0; i--) {
+            current = this.rotors[i].rsub_letter(current);
         }
 
         return current;
@@ -190,6 +200,17 @@ function Rotor(id) {
         var in_pin = Letter.add(Letter.to_pin(letter), Letter.to_pin(this.pos));
         // Pin on side 2 of rotor
         var out_pin = this.wiring[in_pin - 1];
+        // Accounting for rotor position
+        return Letter.from_pin(Letter.add(out_pin, (-1 * Letter.to_pin(this.pos))));
+    };
+
+    this.rsub_letter = function(letter) {
+        // Do the substitution cipher for this rotor
+
+        // Pin on side 2 of rotor
+        var in_pin = Letter.add(Letter.to_pin(letter), Letter.to_pin(this.pos));
+        // Pin on side 1 of rotor
+        var out_pin = this.wiring.indexOf(in_pin) + 1;
         // Accounting for rotor position
         return Letter.from_pin(Letter.add(out_pin, (-1 * Letter.to_pin(this.pos))));
     };

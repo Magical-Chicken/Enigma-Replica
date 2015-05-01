@@ -82,4 +82,31 @@ var rotor_wirings = [
       "Z" ]
 ];
 
+var rotor_reflector = [ "A",
+                        "B",
+                        "C",
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S",
+                        "T",
+                        "U",
+                        "V",
+                        "W",
+                        "X",
+                        "Y",
+                        "Z" ];
+
 var rotor_advancements = [1, 26, 676];
