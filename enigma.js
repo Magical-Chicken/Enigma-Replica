@@ -21,7 +21,14 @@ var Simulation = {
         for (var i = 0; i < 3; i++) {
             this.rotors[i].advance();
         }
-        return "A";
+
+        // Do the substitution through the rotors
+        var current = key;
+        for (var i = 0; i < 3; i++) {
+            current = this.rotors[i].sub_letter(current);
+        }
+
+        return current;
     },
 
     key_press_handler : function(key) {
@@ -124,6 +131,26 @@ var Display = {
     }
 };
 
+var Letter = {
+    add : function(letter, change_by) {
+        // Add to letter
+        var changed = letter + change_by;
+        if (changed > 26)
+            changed = 0 + (changed - 26);
+        else if (changed < 1)
+            changed = 26 - (0 - changed);
+        return changed;
+    },
+
+    to_pin : function(letter) {
+        return letter.charCodeAt() - 64;
+    },
+
+    from_pin : function(pin) {
+        return String.fromCharCode(pin + 64);
+    }
+};
+
 function Rotor(id) {
     // Rotor position
     this.pos = 'A';
@@ -137,12 +164,7 @@ function Rotor(id) {
     
     this.change_init_pos = function(change_by) {
         // Set rotor starting position
-        if (change_by == 1 && this.pos == 'Z')
-            this.pos = 'A';
-        else if (change_by == -1 && this.pos == 'A')
-            this.pos = 'Z';
-        else
-            this.pos = String.fromCharCode(this.pos.charCodeAt() + change_by);
+        this.pos = Letter.from_pin(Letter.add(Letter.to_pin(this.pos), change_by));
     };
 
     this.advance = function() {
@@ -155,5 +177,6 @@ function Rotor(id) {
 
     this.sub_letter = function(letter) {
         // Do the substitution cipher for this rotor
+        return "A";
     };
 };
