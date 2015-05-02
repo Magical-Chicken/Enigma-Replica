@@ -8,17 +8,21 @@
     <script src="rotor_wiring.js"></script>
 </head>
     <body>
-        <header>Enigma</header>
-        <div id="webapp">
-            <div id="rotor_pane"></div>
-            <div id="key_pane"></div>
+        <header>
+            <span>Enigma | </span>A replica by <b>Wesley Wiedenmeier</b>
+            <a class="button" href="LICENSE">read the<br><b>license</b></a>
+            <a class="button" href="https://github.com/Magical-Chicken/Enigma-Replica">get the<br><b>code</b></a>
+        </header>
+        <div id="main_panel">
+            <div id="webapp">
+                <div id="rotor_pane"></div>
+                <div id="key_pane"></div>
+            </div>
             <div id="text_pane">
                 <div id="tp_pt"></div>
                 <div id="tp_ct"></div>
             </div>
         </div>
-        <footer>Designed and Implemented by <b>Wesley Wiedenmeier</b> - 
-            <a href="LICENSE">License<a></footer>
         <script>
             Simulation.initialize();
         </script>
