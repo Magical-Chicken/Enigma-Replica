@@ -65,7 +65,8 @@ footer a {
 .rotor {
     float: right;
     width: 58px;
-    border: 1px solid #111111;
+    border: 1px solid #000000;
+    box-shadow: 2px 2px 2px 0px #000000;
     margin-right: 10px;
     text-align: center;
 }
@@ -79,6 +80,7 @@ footer a {
 }
 
 #key_pane div {
+    box-shadow:  2px 2px 2px 0px #000000;
     border: 1px solid #000000;
     padding-top: 5px;;
     padding-bottom: 5px;;
