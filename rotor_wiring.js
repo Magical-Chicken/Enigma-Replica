@@ -1,4 +1,5 @@
-// Rotor wiring from German Railway (Rocket) [https://en.wikipedia.org/wiki/Enigma_rotor_details]
+// TODO: these wirings will not work with 21 pin, need to change to wirings
+//       used on physical machine
 var rotor_wirings = [
     // Rotor 1
     "JGDQOXUSCAMIFRVTPNEWKBLZYH",
