@@ -46,7 +46,7 @@ var Simulation = {
     // Called when keys are pressed or clicked
     key_press_handler : function(key) {
         // Check if key is in acceptable range
-        if (key.charCodeAt() < 65 || key.charCodeAt() > 90)
+        if (key.charCodeAt() < 65 || key.charCodeAt() > 85)
             return;
 
         // Set current key
@@ -103,7 +103,7 @@ var Display = {
         }
 
         // Create keys display
-        for (var i = 0; i < 26; i++) {
+        for (var i = 0; i < 21; i++) {
             var key = document.createElement("div");
             var letter = String.fromCharCode(65 + i);
             key.id = "key_" + letter;
@@ -149,10 +149,10 @@ var Letter = {
     add : function(letter, change_by) {
         // Add to letter
         var changed = letter + change_by;
-        if (changed > 26)
-            changed = 0 + (changed - 26);
+        if (changed > 21)
+            changed = 0 + (changed - 21);
         else if (changed < 1)
-            changed = 26 - (0 - changed);
+            changed = 21 - (0 - changed);
         return changed;
     },
 
@@ -181,7 +181,7 @@ function Rotor(id) {
     // Set wiring for rotor
     this.set_wiring = function() {
         this.wiring = [];
-        for (var i = 0; i < 26; i++) {
+        for (var i = 0; i < 21; i++) {
             this.wiring[i] = Letter.to_pin(rotor_wirings[this.id][i]);
         }
     };
